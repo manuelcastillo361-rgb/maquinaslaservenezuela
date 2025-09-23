@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Máquinas Láser</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --price: #27ae60;
+            --accessory: #9b59b6;
+            --Repuesto: #f39c12;
+            --software: #16a085;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 400px;
+            margin: 0 10px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: #2980b9;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .home-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+        
+        .home-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        
+        .presentation-btn {
+            background: var(--software);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+        
+        .presentation-btn:hover {
+            background: #138a72;
+            transform: scale(1.05);
+        }
+        
+        .back-btn {
+            display: none;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+            margin: 1rem auto;
+            max-width: 200px;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .content-wrapper {
+                flex-direction: row;
+            }
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 280px;
+            }
+        }
+        
+        .sidebar h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .menu-item {
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            padding: 0.8rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu-item:hover {
+            background-color: #e3f2fd;
+            color: var(--secondary);
+        }
+        
+        .menu-item i {
+            transition: transform 0.3s;
+        }
+        
+        .menu-item.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .menu-item.active i {
+            transform: rotate(90deg);
+        }
+        
+        .menu-item.accessory {
+            color: var(--accessory);
+        }
+        
+        .menu-item.Repuesto {
+            color: var(--Repuesto);
+        }
+        
+        .menu-item.software {
+            color: var(--software);
+        }
+        
+        .submenu {
+            margin-left: 1rem;
+            display: none;
+            border-left: 2px solid var(--secondary);
+            padding-left: 0.5rem;
+        }
+        
+        .submenu.accessory {
+            border-left-color: var(--accessory);
+        }
+        
+        .submenu.Repuesto {
+            border-left-color: var(--Repuesto);
+        }
+        
+        .submenu.software {
+            border-left-color: var(--software);
+        }
+        
+        .submenu-item {
+            padding: 0.7rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+            margin-bottom: 0.3rem;
+        }
+        
+        .submenu-item:hover {
+            background-color: #e3f2fd;
+            color: var(--secondary);
+        }
+        
+        .submenu-item.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .content {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .product-detail {
+            display: none;
+        }
+        
+        .product-detail.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .presentation-content {
+            display: none;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .presentation-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .presentation-content h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .presentation-content h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            border-left: 4px solid var(--secondary);
+            padding-left: 10px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .benefit-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .benefit-card i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .search-results {
+            display: none;
+            margin-bottom: 2rem;
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .search-results h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .result-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .result-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .result-item.accessory {
+            border-left-color: var(--accessory);
+        }
+        
+        .result-item.Repuesto {
+            border-left-color: var(--Repuesto);
+        }
+        
+        .result-item.software {
+            border-left-color: var(--software);
+        }
+        
+        .result-thumbnail {
+            width: 60px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+        
+        .result-info {
+            flex: 1;
+        }
+        
+        .result-name {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        
+        .result-type {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .result-price {
+            font-weight: bold;
+            color: var(--price);
+            margin-left: 1rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+        
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .product-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .product-type {
+            background: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .product-type.accessory {
+            background: var(--accessory);
+        }
+        
+        .product-type.Repuesto {
+            background: var(--Repuesto);
+        }
+        
+        .product-type.software {
+            background: var(--software);
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--price);
+            background: #e8f5e9;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .product-price-label {
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: #2e7d32;
+            margin-right: 5px;
+        }
+        
+        .product-images {
+            position: relative;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .image-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 300px;
+        }
+        
+        @media (min-width: 768px) {
+            .image-slider {
+                height: 400px;
+            }
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+        
+        .slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+        }
+        
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .slider-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .thumbnail {
+            width: 60px;
+            height: 45px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s;
+            opacity: 0.7;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--secondary);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .product-description {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .product-description.accessory {
+            border-left-color: var(--accessory);
+        }
+        
+        .product-description.Repuesto {
+            border-left-color: var(--Repuesto);
+        }
+        
+        .product-description.software {
+            border-left-color: var(--software);
+        }
+        
+        .product-description h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-description p {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .specifications {
+            margin-top: 2rem;
+        }
+        
+        .specifications h3 {
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+        
+        .specifications.accessory h3 {
+            border-bottom-color: var(--accessory);
+        }
+        
+        .specifications.Repuesto h3 {
+            border-bottom-color: var(--Repuesto);
+        }
+        
+        .specifications.software h3 {
+            border-bottom-color: var(--software);
+        }
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .spec-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .spec-item.accessory {
+            border-left-color: var(--accessory);
+        }
+        
+        .spec-item.Repuesto {
+            border-left-color: var(--Repuesto);
+        }
+        
+        .spec-item.software {
+            border-left-color: var(--software);
+        }
+        
+        .spec-name {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        
+        .spec-value {
+            color: #666;
+        }
+        
+        .download-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f0f9ff;
+            border-radius: 8px;
+            border-left: 4px solid var(--software);
+            text-align: center;
+        }
+        
+        .download-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: var(--software);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            margin: 0.5rem;
+        }
+        
+        .download-btn:hover {
+            background: #138a72;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+        
+        .social-btn.instagram {
+            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .welcome-message {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666;
+        }
+        
+        .welcome-message i {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .welcome-message h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .welcome-message p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 767px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .search-container {
+                order: 3;
+                max-width: 100%;
+                margin: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .sidebar {
+                display: none;
+                width: 100%;
+            }
+            
+            .sidebar.active {
+                display: block;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+            }
+            
+            .social-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .home-btn, .presentation-btn {
+                margin-top: 10px;
+            }
+            
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Estado cuando se visualiza un producto */
+        body.product-view .sidebar,
+        body.product-view .menu-toggle {
+            display: none;
+        }
+        
+        body.product-view .content {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        body.product-view .back-btn {
+            display: flex;
+        }
+        
+        @media (min-width: 768px) {
+            body.product-view .content-wrapper {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-laser-alt"></i>
+            <h1>Máquinas Láser</h1>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" id="search-input" placeholder="Buscar productos...">
+            <button class="search-btn" onclick="performSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <div class="header-buttons">
+            <button class="presentation-btn" onclick="showPresentation()">
+                <i class="fas fa-presentation-screen"></i> Presentación
+            </button>
+            <button class="home-btn" onclick="goHome()">
+                <i class="fas fa-home"></i> Inicio
+            </button>
+        </div>
+    </header>
+    
+    <div class="container">
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i> Mostrar Menú
+        </button>
+        
+        <button class="back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Volver al Menú
+        </button>
+        
+        <div class="content-wrapper">
+            <div class="sidebar" id="sidebar">
+                <h2>MENU</h2>
+                <div class="menu-item" onclick="toggleSubmenu('diodo')">
+                    <span>Láser de Diodo</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="submenu" id="diodo-submenu">
+                    <div class="submenu-item" onclick="showProduct('atomstack-a5pro')">
+                        <span>Atomstack A5Pro</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('atomstack-maker-a5-v2')">
+                        <span>Atomstack Maker A5 V2</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('atomstack-a5-m50')">
+                        <span>Atomstack A5 M50</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('atomstack-maker-a10-v2')">
+                        <span>Atomstack Maker A10 V2</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('atomstack-a10-pro')">
+                        <span>Atomstack A10 PRO</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('atomstack-s10-pro')">
+                        <span>Atomstack S10 PRO</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('atomstack-x20')">
+                        <span>Atomstack X20</span>
+                    </div>
+                </div>
+                
+                <div class="menu-item" onclick="toggleSubmenu('co2')">
+                    <span>Láser de CO2</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="submenu" id="co2-submenu">
+                    <div class="submenu-item" onclick="showProduct('omtech-k40')">
+                        <span>Omtech K40+</span>
+                    </div>
+                </div>
+                
+                <div class="menu-item" onclick="toggleSubmenu('fibra')">
+                    <span>Láser de Fibra</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="submenu" id="fibra-submenu">
+                    <div class="submenu-item" onclick="showProduct('omtech-fiber')">
+                        <span>Omtech Fiber 20W</span>
+                    </div>
+                </div>
+                
+                <div class="menu-item accessory" onclick="toggleSubmenu('accesorios')">
+                    <span>Accesorios</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="submenu accessory" id="accesorios-submenu">
+                    <div class="submenu-item" onclick="showProduct('gafas-proteccion')">
+                        <span>Rodillo Rotatorio (Diodo)</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('mesa-rotatoria')">
+                        <span>Mesa de trabajo para corte</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('extractor-humos')">
+                        <span>Rodillo eje giratorio (C02)</span>
+                    </div>
+                </div>
+                
+                <div class="menu-item Repuesto" onclick="toggleSubmenu('Repuestos')">
+                    <span>Repuestos</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="submenu Repuesto" id="Repuestos-submenu">
+                    <div class="submenu-item" onclick="showProduct('lentes-co2')">
+                        <span>Lentes para CO2</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('espejos-laser')">
+                        <span>Espejos para Láser</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('tubo-laser')">
+                        <span>Tubo Láser CO2</span>
+                    </div>
+                </div>
+                
+                <!-- Nueva sección de Software -->
+                <div class="menu-item software" onclick="toggleSubmenu('software')">
+                    <span>Software</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="submenu software" id="software-submenu">
+                    <div class="submenu-item" onclick="showProduct('lasergrbl')">
+                        <span>LaserGRBL</span>
+                    </div>
+                    <div class="submenu-item" onclick="showProduct('lightburn')">
+                        <span>Lightburn</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div id="welcome-message" class="welcome-message">
+                    <i class="fas fa-laptop-code"></i>
+                    <h2>Bienvenido al Catálogo de Máquinas Láser</h2>
+                    <p>Explora nuestra gama de equipos láser profesionales, accesorios, Repuestos y software. Selecciona un modelo del menú para ver sus características técnicas, imágenes y especificaciones.</p>
+                </div>
+                
+                <div id="presentation-content" class="presentation-content">
+                    <h2>¿Por qué elegirnos para tu máquina láser?</h2>
+                    
+                    <p>Con más de <strong>3 años de experiencia</strong> en el mercado venezolano, nos hemos consolidado como líderes en la venta de máquinas láser de la más alta calidad. Nuestra trayectoria nos avala como proveedores confiables que ofrecen soluciones tecnológicas innovadoras para emprendedores, pequeñas empresas y talleres de fabricación.</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <i class="fas fa-award"></i>
+                            <h4>Experiencia Comprobada</h4>
+                            <p>Más de 3 años especializados en el sector láser en Venezuela, con cientos de clientes satisfechos en todo el país.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <i class="fas fa-tools"></i>
+                            <h4>Asesoría Técnica Especializada</h4>
+                            <p>Nuestro equipo de expertos te guiará en la selección del equipo perfecto para tus necesidades específicas.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Garantía y Soporte</h4>
+                            <p>Todos nuestros productos incluyen garantía y acceso a soporte técnico post-venta para resolver cualquier duda o inconveniente.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <i class="fas fa-truck"></i>
+                            <h4>Envíos a Todo el País</h4>
+                            <p>Realizamos envíos seguros y confiables a todos los estados de Venezuela, con embalaje especializado para equipos láser.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <i class="fas fa-cogs"></i>
+                            <h4>Capacitación Incluida</h4>
+                            <p>Con cada compra recibirás capacitación sobre el uso seguro y eficiente de tu nueva máquina láser.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <i class="fas fa-box-open"></i>
+                            <h4>Repuestos y Accesorios</h4>
+                            <p>Contamos con inventario permanente de repuestos y accesorios para garantizar la continuidad de tus operaciones.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Nuestra Misión</h3>
+                    <p>Facilitar el acceso a tecnología láser de calidad para impulsar la creatividad, innovación y productividad de emprendedores y empresas venezolanas. Creemos en el poder transformador de esta tecnología para generar nuevas oportunidades de negocio y desarrollo económico.</p>
+                    
+                    <h3>Compromiso con la Calidad</h3>
+                    <p>Todos nuestros equipos son sometidos a rigurosos controles de calidad antes de ser entregados a nuestros clientes. Trabajamos exclusivamente con marcas reconocidas a nivel internacional que garantizan un rendimiento óptimo y duradero.</p>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="home-btn" onclick="goHome()">
+                            <i class="fas fa-arrow-left"></i> Volver al Catálogo
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="search-results" class="search-results">
+                    <h2>Resultados de búsqueda</h2>
+                    <div id="results-container"></div>
+                </div>
+                
+                <div id="product-detail" class="product-detail"></div>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/584121445344" class="social-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </a>
+                    <a href="https://instagram.com/invcomc" class="social-btn instagram" target="_blank">
+                        <i class="fab fa-instagram"></i> Seguir en Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Catálogo Virtual de Máquinas Láser &copy; 2023 - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Datos de los productos
+        const products = {
+            'atomstack-a5pro': {
+                name: 'Atomstack A5Pro',
+                type: 'Láser de Diodo',
+                price: '$899',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_715450-MLV92912005861_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_833302-MLV92559980526_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_993304-MLV92560020258_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_987529-MLV92969963507_092025-F.jpg'
+                ],
+                description: 'La Atomstack A5Pro es una máquina láser de diodo de 5W ideal para principiantes y profesionales. Perfecta para grabar y cortar materiales como madera, cuero, acrílico y más. Incluye software fácil de usar y es compatible con LaserGRBL и LightBurn.',
+                specs: {
+                    'Tipo': 'Láser de Diodo',
+                    'Potencia': '5W',
+                    'Área de trabajo': '400x400 mm',
+                    'Precisión': '0.01 mm',
+                    'Conectividad': 'USB, TF Card',
+                    'Software': 'LaserGRBL, LightBurn',
+                    'Peso': '8.5 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'atomstack-maker-a5-v2': {
+                name: 'Atomstack Maker A5 V2',
+                type: 'Láser de Diodo',
+                price: '$950',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_997215-MLV92567342520_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_617902-MLV92977806109_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_661811-MLV92977604079_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_789140-MLV92977623671_092025-F.jpg'
+                ],
+                description: 'La Atomstack Maker A5 V2 ofrece una potencia de 5.5W con un área de trabajo ampliada. Diseñada para creadores и makers que necesitan mayor precisión y velocidad. Incluye protección ocular y sistema de ventilación integrado.',
+                specs: {
+                    'Tipo': 'Láser de Diodo',
+                    'Potencia': '5.5W',
+                    'Área de trabajo': '410x400 mm',
+                    'Precisión': '0.01 mm',
+                    'Conectividad': 'USB, TF Card',
+                    'Software': 'LaserGRBL, LightBurn',
+                    'Peso': '9 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'atomstack-a5-m50': {
+                name: 'Atomstack A5 M50',
+                type: 'Láser de Diodo',
+                price: '$1,150',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_613478-MLV93116660951_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_704814-MLV93117256151_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_643884-MLV92705447770_092025-F.jpg'
+                ],
+                description: 'El Atomstack A5 M50 es un modelo avanzado con módulo láser de 5W y sistema de enfoque mejorado. Perfecto para trabajos detallados de grabado y corte de materiales de hasta 10mm de espesor. Incluye cámara de visión para alineación precisa.',
+                specs: {
+                    'Tipo': 'Láser de Diodo',
+                    'Potencia': '5W',
+                    'Área de trabajo': '400x400 mm',
+                    'Precisión': '0.01 mm',
+                    'Conectividad': 'USB, TF Card',
+                    'Software': 'LaserGRBL, LightBurn',
+                    'Peso': '8.7 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'atomstack-maker-a10-v2': {
+                name: 'Atomstack Maker A10 V2',
+                type: 'Láser de Diodo',
+                price: '$no disponible',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_698855-MLV75895961544_042024-O.webp'
+                ],
+                description: 'La Atomstack Maker A10 V2 con potencia de 10W es ideal para usuarios que requieren mayor velocidad y capacidad de corte. Diseño robusto con marco de aleación de aluminio y sistema de refrigeración mejorado. Perfecta para pequeños negocios y talleres.',
+                specs: {
+                    'Tipo': 'Láser de Diodo',
+                    'Potencia': '10W',
+                    'Área de trabajo': '410x400 mm',
+                    'Precisión': '0.01 mm',
+                    'Conectividad': 'USB, TF Card',
+                    'Software': 'LaserGRBL, LightBurn',
+                    'Peso': '10 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'atomstack-a10-pro': {
+                name: 'Atomstack A10 PRO',
+                type: 'Láser de Diodo',
+                price: '$1450',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_916314-MLV92568054424_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_667512-MLV92978441657_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_709458-MLV92568024120_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_960854-MLV92980048981_092025-F.jpg'
+                ],
+                description: 'La Atomstack A10 PRO es una máquina láser de 10W con características profesionales a un precio accesible. Incluye sensor de altura automático, cámara de visión y sistema de escape de humos. Ideal para aplicaciones comerciales y educativas.',
+                specs: {
+                    'Tipo': 'Láser de Diodo',
+                    'Potencia': '10W',
+                    'Área de trabajo': '400x400 mm',
+                    'Precisión': '0.01 mm',
+                    'Conectividad': 'USB, TF Card, Wi-Fi',
+                    'Software': 'LaserGRBL, LightBurn',
+                    'Peso': '9.5 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'atomstack-s10-pro': {
+                name: 'Atomstack S10 PRO',
+                type: 'Láser de Diodo',
+                price: '$1,550',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_752142-MLV92568038436_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_670281-MLV92568018750_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_896184-MLV92978436113_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_692110-MLV92978426813_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_702234-MLV92568029236_092025-F.jpg'
+                ],
+                description: 'La Atomstack S10 PRO combina 10W de potencia con un diseño elegante y funcional. Incluye pantalla táctil, conexión Wi-Fi y software mejorado. Perfecta para emprendedores que buscan una solución completa de grabado y corte láser.',
+                specs: {
+                    'Tipo': 'Láser de Diodo',
+                    'Potencia': '10W',
+                    'Área de trabajo': '400x400 mm',
+                    'Precisión': '0.01 mm',
+                    'Conectividad': 'USB, TF Card, Wi-Fi',
+                    'Software': 'LaserGRBL, LightBurn',
+                    'Peso': '9.2 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'atomstack-x20': {
+                name: 'Atomstack X20',
+                type: 'Láser de Diodo',
+                price: '$1,850',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_831843-MLV92572110654_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_719112-MLV92573280782_092025-F.jpg'
+                ],
+                description: 'La Atomstack X20 es la máquina láser de diodo más potente de la serie con 20W de potencia. Capaz de cortar materiales más gruesos y grabar a mayor velocidad. Incluye todas las características premium como cámara de visión, sensor de altura y conexión inalámbrica.',
+                specs: {
+                    'Tipo': 'Láser de Diodo',
+                    'Potencia': '20W',
+                    'Área de trabajo': '400x400 mm',
+                    'Precisión': '0.01 mm',
+                    'Conectividad': 'USB, TF Card, Wi-Fi, Ethernet',
+                    'Software': 'LaserGRBL, LightBurn',
+                    'Peso': '11 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'omtech-k40': {
+                name: 'Omtech K40+',
+                type: 'Láser de CO2',
+                price: '$2,750',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_954900-MLV85498995103_052025-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_684555-MLV85498995101_052025-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_960790-MLV85498859681_052025-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_670333-MLV85195206318_052025-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_820255-MLV85498869801_052025-O.webp'
+                ],
+                description: 'La Omtech K40+ es una máquina láser CO2 de 40W con cama de trabajo de 300x200mm. Ideal para cortar y grabar acrílico, madera, textiles y más. Incluye sistema de refrigeración por agua y software compatible con CorelDraw. Perfecta para pequeños negocios.',
+                specs: {
+                    'Tipo': 'Láser de CO2',
+                    'Potencia': '40W',
+                    'Área de trabajo': '300x200 mm',
+                    'Longitud de onda': '10.6 μm',
+                    'Enfriamiento': 'Agua Destilada',
+                    'Software': 'Laser GRBL, Lightburn',
+                    'Peso': '35 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'omtech-fiber': {
+                name: 'Omtech Fiber 20W',
+                type: 'Láser de Fibra',
+                price: '$4,550',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_739195-MLV88244243394_072025-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_690456-MLV88587822547_072025-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_620177-MLV84277757152_052025-O.webp'
+                ],
+                description: 'La Omtech Fiber 20W es una máquina láser de fibra de alta precisión para marcado sobre metales y plásticos. Equipo industrial con software EZCAD2, visión CCD y cabina cerrada con extracción de humos. Ideal para aplicaciones industriales y de fabricación.',
+                specs: {
+                    'Tipo': 'Láser de Fibra',
+                    'Potencia': '20W',
+                    'Área de trabajo': '11x11 mm',
+                    'Longitud de onda': '1064 nm',
+                    'Enfriamiento': 'Aire',
+                    'Software': 'EZCAD2',
+                    'Peso': '45 kg',
+                    'Voltaje': '110V',
+                    'Garantía': '6 meses'
+                }
+            },
+            'gafas-proteccion': {
+                name: 'Rodillo Rotatorio',
+                type: 'Accesorio',
+                price: '$350',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_733598-MLV92985988041_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_733598-MLV92985988041_092025-F.jpg'
+                ],
+                description: 'Rodillo laser giratorio para personalizar: lapices, plumas, termos metalicos y todo cilindro que tu imaginacion y creatividad te inspiren hacer.',
+                specs: {
+                    'Tipo': 'Laser de diodo',
+                    'Modelo': 'Atomstack R3',
+                    'Marca': 'Atomstack',
+                    'Ajuste': 'Universal, ajustable',
+                    'Compatible': 'Atomstack laser de dido',
+                    'Garantia': '6 meses',
+                    'Color': 'Negro'
+                }
+            },
+            'mesa-rotatoria': {
+                name: 'Mesa de trabajo para corte',
+                type: 'Accesorio',
+                price: '$299',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_908700-MLV70779307783_072023-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_672599-MLV70779307781_072023-O.webp'
+                ],
+                description: 'Después de usar esta mesa de corte láser para cortar madera, acrílico y otros materiales, los bordes de la madera están limpios y ordenados, menos humo y un escape de humo más efectivo, y pueden hacer que el trabajo de corte sea limpio y ordenado',
+                specs: {
+                    'Tipo': 'Mesa de trabajo para corte laser',
+                    'largo': '40 cm',
+                    'Ancho': '40 cm',
+                    'Espesor': '2 cm',
+                    'Material': 'Aluminio',
+                    'Color': 'Negro',
+                    'Peso': '3.5 kg',
+                    'Compatible': 'Mayoría de láser'
+                }
+            },
+            'extractor-humos': {
+                name: 'Rodillo eje giratorio (C02) para Láser',
+                type: 'Accesorio',
+                price: '$350',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_999915-MLV70779364699_072023-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_970348-MLV76008645198_052024-O.webp',
+                    'https://http2.mlstatic.com/D_NQ_NP_825786-MLV70748521692_072023-O.webp'
+                ],
+                description: 'Graba superficies redondas: este eje giratorio OMTech funciona con grabadores láser de Co2 k40 40w para permitirte realizar grabados de 360 en objetos cilíndricos como tazas, botellas, tubos, cuencos y más; con una altura baja de 8 centimetros, este rodillo giratorio compacto de eje Y encaja en la máquina de grabado con facilidad mientras evita obstaculizar el cabezal láser.',
+                specs: {
+                    'Marca': 'Omtech ',
+                    'Modelo': 'Cilindro giratorio CO2',
+                    'Compatible': 'Laser CO2 k40, k40+',
+                    'Voltaje': '110',
+                    'Material': 'Aluminio',
+                    'Color': 'Negro y Gris',
+                    'Dimensiones': '36x16x8 cm',
+                    'Peso': '3.5 kg'
+                }
+            },
+            'lentes-co2': {
+                name: 'Lentes para Láser CO2',
+                type: 'Repuesto',
+                price: '$99',
+                images: [ 
+                    'https://i.ebayimg.com/thumbs/images/g/DvUAAOSwYxFjMnOT/s-l500.jpg',
+                    'https://i.ebayimg.com/images/g/Ew8AAOSwPJphLZ3I/s-l960.webp'  
+                ],
+                description: 'Juego de lentes de repuesto para láser CO2. Fabricados en zinc selenido (ZnSe) de alta calidad para una óptima transmisión del haz láser. Incluye lentes de enfoque de diferentes distancias focales.',
+                specs: {
+                    'Tipo': 'Lentes para CO2',
+                    'Material': 'Zinc Selenido (ZnSe)',
+                    'Diámetro': '20 mm',
+                    'Distancia focal': '50.8 mm (2")',
+                    'Transmisión': '> 99% a 10.6μm',
+                    'Revestimiento': 'Anti-reflectante',
+                    'Aplicación': 'Corte y grabado láser CO2',
+                    'Compatibilidad': 'Máquinas CO2 de 40-100W'
+                }
+            },
+            'espejos-laser': {
+                name: 'Espejos para Láser CO2',
+                type: 'Repuesto',
+                price: '99',
+                images: [
+                    'https://i.ebayimg.com/images/g/5SAAAOSwoONgGQ7W/s-l960.webp',
+                    'https://i.ebayimg.com/images/g/CAsAAOSwzA9gGQ7M/s-l960.webp'
+                ],
+                description: 'Espejos de repuesto para sistema de reflexión de máquinas láser CO2. Fabricados en cobre pulido con revestimiento de oro para máxima reflectividad y durabilidad.',
+                specs: {
+                    'Tipo': 'Espejos reflectores',
+                    'Material': 'Cobre con revestimiento de oro',
+                    'Diámetro': '20 mm',
+                    'Reflectividad': '> 99% a 10.6μm',
+                    'Espesor': '3 mm',
+                    'Montaje': 'Base estándar M9',
+                    'Aplicación': 'Sistema de reflexión láser CO2',
+                    'Compatibilidad': 'Máquinas CO2 de 40-100W'
+                }
+            },
+            'tubo-laser': {
+                name: 'Tubo Láser CO2 40W',
+                type: 'Repuesto',
+                price: '$580',
+                images: [
+                    'https://i.ebayimg.com/images/g/RXcAAOSwfwZiKEiA/s-l960.webp',
+                    'https://i.ebayimg.com/images/g/8ukAAOSwXilhJ1Ly/s-l960.webp'
+                ],
+                description: 'Tubo láser de CO2 de 40W de repuesto. Vida útil aproximada de 2000 horas. Compatible con la mayoría de máquinas láser CO2 del mercado. Incluye garantía del fabricante.',
+                specs: {
+                    'Tipo': 'Tubo láser CO2',
+                    'Potencia': '40W',
+                    'Longitud de onda': '10.6 μm',
+                    'Vida útil': '2000 horas aprox.',
+                    'Longitud': '720 mm',
+                    'Diámetro': '45 mm',
+                    'Voltaje de trabajo': '15-20KV',
+                    'Corriente de trabajo': '18-22mA',
+                    'Garantía': '6 meses'
+                }
+            },
+            // Nuevos productos de software
+            'lasergrbl': {
+                name: 'LaserGRBL',
+                type: 'Software',
+                price: 'Gratuito',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_631529-MLV93121628221_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_822466-MLV93121677941_092025-F.jpg'
+                ],
+                description: 'LaserGRBL es un software de control para máquinas láser de diodo que utiliza GRBL como firmware. Permite importar archivos SVG, BMP, JPG y otros formatos para grabado y corte. Interfaz intuitiva con previsualización del trabajo y ajustes de potencia y velocidad.',
+                specs: {
+                    'Tipo': 'Software de control',
+                    'Licencia': 'Gratuita',
+                    'Sistema operativo': 'Windows',
+                    'Formatos soportados': 'SVG, BMP, JPG, PNG, DXF',
+                    'Funciones': 'Grabado, corte, previsualización',
+                    'Idiomas': 'Múltiples idiomas',
+                    'Requisitos': 'Windows 7 o superior, .NET Framework 4.0',
+                    'Firmware compatible': 'GRBL'
+                },
+                downloadLink: 'https://lasergrbl.com/download/'
+            },
+            'lightburn': {
+                name: 'Lightburn',
+                type: 'Software',
+                price: '$279',
+                images: [
+                    'https://http2.mlstatic.com/D_NQ_NP_802251-MLV92709908818_092025-F.jpg',
+                    'https://http2.mlstatic.com/D_NQ_NP_937900-MLV93121868077_092025-F.jpg'
+                ],
+                description: 'Lightburn es el software premium para control de máquinas láser. Ofrece herramientas avanzadas de diseño, edición y organización de trabajos. Compatible con la mayoría de controladoras láser del mercado. Incluye funciones como corte por cámara, ajuste de potencia por color y mucho más.',
+                specs: {
+                    'Tipo': 'Software de diseño y control',
+                    'Licencia': 'De pago (una vez)',
+                    'Sistema operativo': 'Windows, Mac',
+                    'Formatos soportados': 'SVG, DXF, PLT, PDF, AI, PNG, JPG',
+                    'Funciones': 'Diseño, edición, corte, grabado, previsualización',
+                    'Idiomas': 'Múltiples idiomas',
+                    'Actualizaciones': '1 año de actualizaciones gratuitas',
+                    'Firmware compatible': 'GRBL, Smoothieware, Marlin, Ruida, Trocen'
+                },
+                downloadLink: 'https://lightburnsoftware.com/pages/download-trial'
+            }
+        };
+
+        // Variables globales
+        let currentSlide = 0;
+        let currentProductId = null;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Función para mostrar la presentación
+        function showPresentation() {
+            // Ocultar mensaje de bienvenida, resultados de búsqueda y detalle de producto
+            document.getElementById('welcome-message').style.display = 'none';
+            document.getElementById('search-results').classList.remove('active');
+            document.getElementById('product-detail').classList.remove('active');
+            
+            // Mostrar presentación
+            document.getElementById('presentation-content').classList.add('active');
+            
+            // Ocultar menú lateral
+            document.getElementById('sidebar').style.display = 'none';
+            document.querySelector('.menu-toggle').style.display = 'none';
+            
+            // Mostrar botón de regresar
+            document.querySelector('.back-btn').style.display = 'flex';
+            
+            // Añadir clase de vista de producto
+            document.body.classList.add('product-view');
+        }
+
+        // Función para mostrar/ocultar el menú en móviles
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const isActive = sidebar.classList.contains('active');
+            
+            if (isActive) {
+                sidebar.classList.remove('active');
+                document.querySelector('.menu-toggle').innerHTML = '<i class="fas fa-bars"></i> Mostrar Menú';
+            } else {
+                sidebar.classList.add('active');
+                document.querySelector('.menu-toggle').innerHTML = '<i class="fas fa-times"></i> Ocultar Menú';
+            }
+        }
+
+        // Función para volver al menú principal
+        function goBack() {
+            // Ocultar detalle de producto
+            document.getElementById('product-detail').classList.remove('active');
+            
+            // Ocultar resultados de búsqueda
+            document.getElementById('search-results').classList.remove('active');
+            
+            // Ocultar presentación
+            document.getElementById('presentation-content').classList.remove('active');
+            
+            // Mostrar mensaje de bienvenida
+            document.getElementById('welcome-message').style.display = 'block';
+            
+            // Mostrar menú lateral
+            document.getElementById('sidebar').style.display = 'block';
+            document.querySelector('.menu-toggle').style.display = 'block';
+            
+            // Ocultar botón de regresar
+            document.querySelector('.back-btn').style.display = 'none';
+            
+            // Quitar clase de vista de producto
+            document.body.classList.remove('product-view');
+            
+            // Limpiar campo de búsqueda
+            document.getElementById('search-input').value = '';
+        }
+
+        // Función para volver al inicio
+        function goHome() {
+            goBack();
+        }
+
+        // Función para mostrar/ocultar submenús
+        function toggleSubmenu(type) {
+            const submenu = document.getElementById(`${type}-submenu`);
+            const menuItem = event.currentTarget;
+            
+            // Cerrar otros submenús
+            document.querySelectorAll('.submenu').forEach(item => {
+                if (item.id !== `${type}-submenu`) {
+                    item.style.display = 'none';
+                    item.previousElementSibling.classList.remove('active');
+                }
+            });
+            
+            // Alternar el submenú actual
+            if (submenu.style.display === 'block') {
+                submenu.style.display = 'none';
+                menuItem.classList.remove('active');
+            } else {
+                submenu.style.display = 'block';
+                menuItem.classList.add('active');
+            }
+        }
+
+        // Función para realizar búsqueda
+        function performSearch() {
+            const searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
+            
+            if (searchTerm === '') {
+                // Si el término de búsqueda está vacío, mostrar mensaje de bienvenida
+                goBack();
+                return;
+            }
+            
+            // Ocultar mensaje de bienvenida, presentación y detalle de producto
+            document.getElementById('welcome-message').style.display = 'none';
+            document.getElementById('presentation-content').classList.remove('active');
+            document.getElementById('product-detail').classList.remove('active');
+            
+            // Mostrar sección de resultados
+            const searchResults = document.getElementById('search-results');
+            searchResults.classList.add('active');
+            
+            // Ocultar menú lateral
+            document.getElementById('sidebar').style.display = 'none';
+            document.querySelector('.menu-toggle').style.display = 'none';
+            
+            // Mostrar botón de regresar
+            document.querySelector('.back-btn').style.display = 'flex';
+            
+            // Añadir clase de vista de producto
+            document.body.classList.add('product-view');
+            
+            // Filtrar productos
+            const filteredProducts = Object.entries(products).filter(([id, product]) => {
+                return (
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.type.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm) ||
+                    Object.values(product.specs).some(value => 
+                        value.toString().toLowerCase().includes(searchTerm)
+                    )
+                );
+            });
+            
+            // Mostrar resultados
+            const resultsContainer = document.getElementById('results-container');
+            resultsContainer.innerHTML = '';
+            
+            if (filteredProducts.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h3>No se encontraron resultados</h3>
+                        <p>Intenta con otros términos de búsqueda.</p>
+                    </div>
+                `;
+            } else {
+                filteredProducts.forEach(([id, product]) => {
+                    // Determinar la clase según el tipo de producto
+                    let productClass = '';
+                    if (product.type === 'Accesorio') productClass = 'accessory';
+                    if (product.type === 'Repuesto') productClass = 'Repuesto';
+                    if (product.type === 'Software') productClass = 'software';
+                    
+                    const resultItem = document.createElement('div');
+                    resultItem.className = `result-item ${productClass}`;
+                    resultItem.onclick = () => showProduct(id);
+                    
+                    resultItem.innerHTML = `
+                        <img src="${product.images[0]}" alt="${product.name}" class="result-thumbnail">
+                        <div class="result-info">
+                            <div class="result-name">${product.name}</div>
+                            <div class="result-type">${product.type}</div>
+                        </div>
+                        <div class="result-price">${product.price}</div>
+                    `;
+                    
+                    resultsContainer.appendChild(resultItem);
+                });
+            }
+        }
+
+        // Función para mostrar un producto
+        function showProduct(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            currentProductId = productId;
+            currentSlide = 0;
+            
+            // Ocultar mensaje de bienvenida, presentación y resultados de búsqueda
+            document.getElementById('welcome-message').style.display = 'none';
+            document.getElementById('presentation-content').classList.remove('active');
+            document.getElementById('search-results').classList.remove('active');
+            
+            // Ocultar menú lateral
+            document.getElementById('sidebar').style.display = 'none';
+            document.querySelector('.menu-toggle').style.display = 'none';
+            
+            // Mostrar botón de regresar
+            document.querySelector('.back-btn').style.display = 'flex';
+            
+            // Añadir clase de vista de producto
+            document.body.classList.add('product-view');
+            
+            // Determinar la clase según el tipo de producto
+            let productClass = '';
+            if (product.type === 'Accesorio') productClass = 'accessory';
+            if (product.type === 'Repuesto') productClass = 'Repuesto';
+            if (product.type === 'Software') productClass = 'software';
+            
+            // Generar HTML para el slider de imágenes
+            let imagesHtml = '';
+            if (product.images && product.images.length > 0) {
+                imagesHtml = `
+                    <div class="product-images">
+                        <div class="image-slider" id="image-slider">
+                `;
+                
+                product.images.forEach((img, index) => {
+                    imagesHtml += `
+                        <div class="slide">
+                            <img src="${img}" alt="${product.name} - Vista ${index + 1}">
+                        </div>
+                    `;
+                });
+                
+                imagesHtml += `
+                        </div>
+                        <div class="slider-nav">
+                            <button class="slider-btn" onclick="prevSlide()">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slider-btn" onclick="nextSlide()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="thumbnail-container">
+                `;
+                
+                product.images.forEach((img, index) => {
+                    imagesHtml += `
+                        <img src="${img}" alt="Vista ${index + 1}" class="thumbnail ${index === 0 ? 'active' : ''}" 
+                             onclick="goToSlide(${index})">
+                    `;
+                });
+                
+                imagesHtml += `
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Generar HTML para la descripción
+            let descriptionHtml = '';
+            if (product.description) {
+                descriptionHtml = `
+                    <div class="product-description ${productClass}">
+                        <h3>Descripción</h3>
+                        <p>${product.description}</p>
+                    </div>
+                `;
+            }
+            
+            // Generar HTML para las especificaciones
+            let specsHtml = '';
+            if (product.specs) {
+                specsHtml = `
+                    <div class="specifications ${productClass}">
+                        <h3>Especificaciones Técnicas</h3>
+                        <div class="spec-grid">
+                `;
+                
+                for (const [key, value] of Object.entries(product.specs)) {
+                    specsHtml += `
+                        <div class="spec-item ${productClass}">
+                            <div class="spec-name">${key}</div>
+                            <div class="spec-value">${value}</div>
+                        </div>
+                    `;
+                }
+                
+                specsHtml += `
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Generar HTML para la sección de descarga (solo para software)
+            let downloadHtml = '';
+            if (product.downloadLink) {
+                downloadHtml = `
+                    <div class="download-section">
+                        <h3>Descargar Software</h3>
+                        <a href="${product.downloadLink}" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i> Descargar ${product.name}
+                        </a>
+                    </div>
+                `;
+            }
+            
+            // Construir el HTML completo del producto
+            const productHtml = `
+                <div class="product-header">
+                    <div>
+                        <h2 class="product-title">${product.name}</h2>
+                        <span class="product-type ${productClass}">${product.type}</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="product-price-label">Precio:</span> ${product.price}
+                    </div>
+                </div>
+                ${imagesHtml}
+                ${descriptionHtml}
+                ${downloadHtml}
+                ${specsHtml}
+            `;
+            
+            // Insertar en el DOM
+            const productDetail = document.getElementById('product-detail');
+            productDetail.innerHTML = productHtml;
+            productDetail.classList.add('active');
+            
+            // Agregar event listeners para deslizar
+            const slider = document.getElementById('image-slider');
+            if (slider) {
+                slider.addEventListener('touchstart', handleTouchStart, false);
+                slider.addEventListener('touchend', handleTouchEnd, false);
+            }
+            
+            // Actualizar slider
+            updateSlider();
+        }
+
+        // Funciones para controlar el slider
+        function nextSlide() {
+            const product = products[currentProductId];
+            if (!product) return;
+            
+            currentSlide = (currentSlide + 1) % product.images.length;
+            updateSlider();
+        }
+        
+        function prevSlide() {
+            const product = products[currentProductId];
+            if (!product) return;
+            
+            currentSlide = (currentSlide - 1 + product.images.length) % product.images.length;
+            updateSlider();
+        }
+        
+        function goToSlide(index) {
+            const product = products[currentProductId];
+            if (!product || index < 0 || index >= product.images.length) return;
+            
+            currentSlide = index;
+            updateSlider();
+        }
+        
+        function updateSlider() {
+            const slider = document.getElementById('image-slider');
+            if (!slider) return;
+            
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Actualizar miniaturas activas
+            document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+                if (index === currentSlide) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+        
+        // Funciones para control deslizante táctil
+        function handleTouchStart(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        }
+        
+        function handleTouchEnd(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        }
+        
+        function handleSwipe() {
+            const diff = touchStartX - touchEndX;
+            const minSwipe = 50; // Mínimo de píxeles para considerar un deslizamiento
+            
+            if (diff > minSwipe) {
+                nextSlide();
+            } else if (diff < -minSwipe) {
+                prevSlide();
+            }
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar event listeners para los elementos del menú
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remover active de todos los items
+                    document.querySelectorAll('.menu-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    // Agregar active al item clickeado
+                    this.classList.add('active');
+                });
+            });
+            
+            // Agregar event listeners para los elementos del submenú
+            document.querySelectorAll('.submenu-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remover active de todos los items
+                    document.querySelectorAll('.submenu-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    // Agregar active al item clickeado
+                    this.classList.add('active');
+                });
+            });
+            
+            // Agregar event listener para búsqueda con Enter
+            document.getElementById('search-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
